@@ -1,0 +1,4 @@
+node_modules
+data_whatsapp
+.wwebjs_cache
+*.vcf
