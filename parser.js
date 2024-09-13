@@ -51,15 +51,15 @@ client.on('ready', async () => {
 	console.log(`Input file parsed. Found ${contacts.length} contacts ${SEARCH_CONTACTS_WITHOUT_PHOTO_ONLY ? 'without photo' : ''}`);
 	const wContacts = await client.getContacts();
 
-  // fs.writeFileSync('./wContacts.json', JSON.stringify(wContacts, null, 4), {
-  //   encoding: 'utf-8'
-  // })
+	// fs.writeFileSync('./wContacts.json', JSON.stringify(wContacts, null, 4), {
+	//   encoding: 'utf-8'
+	// })
 
 	const whatsappContacts = new Map();
 	wContacts.forEach((contact) => {
 		if (contact.id.user && contact.id._serialized) whatsappContacts.set(contact.id.user, contact.id._serialized);
 
-		  // console.log(contact.id.user)
+		// console.log(contact.id.user)
 	});
 
 	console.log('Getting WhatsApp contacts profile photos.')
@@ -82,10 +82,10 @@ client.on('ready', async () => {
 			if (whatsappContactId) {
 				photo = await downloadFile(client, whatsappContactId);
 
-			// vCard version 2.1 requires base64 strings to end with two \n
-			// the generate function only adds one so we're going to replace this
-			// ñ later, as just using \n would literally write \n
-			// https://android.googlesource.com/platform/frameworks/opt/vcard/+/5907243e6cf0603adf266ebfa7ee5ee465b9c596/java/com/android/vcard/VCardParserImpl_V21.java#842
+				// vCard version 2.1 requires base64 strings to end with two \n
+				// the generate function only adds one so we're going to replace this
+				// ñ later, as just using \n would literally write \n
+				// https://android.googlesource.com/platform/frameworks/opt/vcard/+/5907243e6cf0603adf266ebfa7ee5ee465b9c596/java/com/android/vcard/VCardParserImpl_V21.java#842
 				if (photo)
 					if (photo.filesize < MAX_SIZE)
 						contact.photo = [
@@ -109,7 +109,7 @@ client.on('ready', async () => {
 		let generated = vCard.generate(contact);
 		let lines = generated.split('\n');
 
-      	// Need to fix some wrongly parsed contacts with encoded N and FN
+		// Need to fix some wrongly parsed contacts with encoded N and FN
 		for (let i = 0; i < lines.length; i++) {
 			const line = lines[i];
 			let couldBeWronglyParsed;

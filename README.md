@@ -50,5 +50,5 @@ Note that if your contact already had a photo and the tool finds one in WhatsApp
 
 Once it finishes looking for photos, it'll just write them as specified by the `CONTACTS_PER_FILE` constant in new VCF files which you can import in your Contacts app.
 
-If for some reason it fails, you always have your `contacts.vcf` file which you can just import to get you contacts back.
+If for some reason it fails, you always have your `contacts.vcf` file which you can just import to get your contacts back.
 
