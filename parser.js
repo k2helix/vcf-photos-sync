@@ -120,9 +120,10 @@ client.on('ready', async () => {
 			if (i > 0 && couldBeWronglyParsed && (lines[i - 1].startsWith('N') || lines[i - 1].startsWith('FN'))) {
 				lines[i - 1] = lines[i - 1].replaceAll('\r', '') + line.slice(1);
 				lines[i] = null;
-				generated = lines.filter((l) => l != null).join('\n');
 			}
-		}	
+		}
+
+		generated = lines.filter((l) => l != null).join('\n');
 
 		if (SEARCH_CONTACTS_WITHOUT_PHOTO_ONLY)
 		{
@@ -137,7 +138,7 @@ client.on('ready', async () => {
   	// I hate async
 	setTimeout(() => {
 		const numberOfContacts = newVCards.length;
-		const numberOfFiles = Math.ceil(numberOfContacts / 50)
+		const numberOfFiles = Math.ceil(numberOfContacts / CONTACTS_PER_FILE);
 		
 		console.log(`Saving ${numberOfContacts} contacts in ${numberOfFiles} files`);
 		for (let i = 1; i <= numberOfFiles; i++) {
